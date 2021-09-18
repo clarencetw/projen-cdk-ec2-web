@@ -49,3 +49,4 @@ cdk.out/
 .cdk.staging/
 .parcel-cache/
 !/cdk.json
+cdk.context.json

@@ -1,14 +1,18 @@
 const { AwsCdkTypeScriptApp } = require('projen');
 const project = new AwsCdkTypeScriptApp({
-  cdkVersion: '1.95.2',
+  cdkVersion: '1.120.0',
   defaultReleaseBranch: 'main',
   name: 'projen-cdk-ec2-web',
-
-  // cdkDependencies: undefined,  /* Which AWS CDK modules (those that start with "@aws-cdk/") this app uses. */
-  // deps: [],                    /* Runtime dependencies of this module. */
-  // description: undefined,      /* The description is just a string that helps people understand the purpose of the package. */
-  // devDeps: [],                 /* Build dependencies for this module. */
-  // packageName: undefined,      /* The "name" in package.json. */
-  // release: undefined,          /* Add release management to this project. */
+  cdkDependencies: [
+    '@aws-cdk/aws-ec2',
+    '@aws-cdk/aws-elasticloadbalancingv2',
+    '@aws-cdk/aws-autoscaling',
+    '@aws-cdk/aws-s3-assets',
+  ],
+  deps: [
+    'source-map-support',
+  ],
 });
+const common_exclude = ['cdk.context.json'];
+project.gitignore.exclude(...common_exclude);
 project.synth();
