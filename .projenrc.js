@@ -3,6 +3,7 @@ const project = new AwsCdkTypeScriptApp({
   cdkVersion: '1.120.0',
   defaultReleaseBranch: 'main',
   name: 'projen-cdk-ec2-web',
+  minNodeVersion: '14.17.6',
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-elasticloadbalancingv2',
