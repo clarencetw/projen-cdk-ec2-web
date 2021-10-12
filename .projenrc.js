@@ -4,6 +4,11 @@ const project = new AwsCdkTypeScriptApp({
   defaultReleaseBranch: 'main',
   name: 'projen-cdk-ec2-web',
   minNodeVersion: '14.17.6',
+
+  autoApproveOptions: {
+    secret: 'GITHUB_TOKEN',
+  },
+
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
     '@aws-cdk/aws-elasticloadbalancingv2',
