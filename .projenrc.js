@@ -8,6 +8,7 @@ const project = new AwsCdkTypeScriptApp({
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
   },
+  autoApproveUpgrades: true,
 
   cdkDependencies: [
     '@aws-cdk/aws-ec2',
