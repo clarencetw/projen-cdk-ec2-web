@@ -5,8 +5,10 @@ const project = new AwsCdkTypeScriptApp({
   name: 'projen-cdk-ec2-web',
   minNodeVersion: '14.17.6',
 
+  projenUpgradeSecret: 'PROJEN_GITHUB_TOKEN',
   autoApproveOptions: {
     secret: 'GITHUB_TOKEN',
+    allowedUsernames: ['clarencetw'],
   },
   autoApproveUpgrades: true,
 
