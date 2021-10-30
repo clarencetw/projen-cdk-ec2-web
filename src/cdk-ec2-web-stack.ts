@@ -9,9 +9,7 @@ export class CdkEc2WebStack extends cdk.Stack {
   constructor(scope: cdk.Construct, id: string, props?: cdk.StackProps) {
     super(scope, id, props);
 
-    const vpc = ec2.Vpc.fromLookup(this, 'VPC', {
-      isDefault: true,
-    });
+    const vpc = this.getVpc(this);
 
     const host = new ec2.BastionHostLinux(this, 'BastionHost', {
       vpc,
@@ -73,4 +71,10 @@ export class CdkEc2WebStack extends cdk.Stack {
       value: `http://${lb.loadBalancerDnsName}/phpinfo.php`,
     });
   }
+
+  private getVpc(scope: cdk.Construct): ec2.IVpc {
+    return process.env.CDK_USE_DEFAULT_VPC === '1' ?
+      ec2.Vpc.fromLookup(scope, 'Vpc', { isDefault: true }) :
+      new ec2.Vpc(scope, 'Vpc', { maxAzs: 3, natGateways: 1 });
+  };
 }
